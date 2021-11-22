@@ -33,8 +33,8 @@ jobs:
       - name: Copy test execution videos
         run:
           mkdir public
-          cp -R cypress/videos public/videos
-          cp -R cypress/screenshots public/screenshots
+          cp /cypress/videos /public/videos
+          cp /cypress/screenshots /public/screenshots
           
       - name: Merge test reports
         run: npm run combine:report
