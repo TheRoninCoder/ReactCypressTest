@@ -32,7 +32,7 @@ jobs:
         
       - name: Copy test execution videos
         run:
-          mkdir public
+          # mkdir public
           cp cypress/videos public/videos
           
       - name: Merge test reports
