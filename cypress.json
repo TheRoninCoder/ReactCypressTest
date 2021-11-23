@@ -3,6 +3,9 @@
   "ignoreTestFiles": "**/examples/*",
   "viewportHeight": 1080,
   "viewportWidth": 1920,
-  "reporter": "mochawesome",
-  "projectId": "2yorjh"
+  "projectId": "2yorjh",
+  "reporter": "cypress-multi-reporters",
+    "reporterOptions": {
+        "configFile": "reporter-config.json"
+    }
 }
