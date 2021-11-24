@@ -26,7 +26,10 @@ jobs:
           $(npm bin)/cypress verify
           
       - name: Run Cypress tests
-        run: npm run test:chrome
+        run: 
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         continue-on-error: true
         
       - name: Copy test execution videos
