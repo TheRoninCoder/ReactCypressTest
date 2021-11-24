@@ -34,7 +34,7 @@ jobs:
         
       - name: Copy test execution videos
         run: |
-          # mkdir public
+          mkdir public
           cp -r cypress/videos public/videos
           
       - name: create json files post tests
