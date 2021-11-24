@@ -30,7 +30,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "test:chrome": "cypress run --browser chrome",
-    "posttest": "cypress run -r cypress-multi-reporters test_script --reporter mochawesome",
+    "posttest": "cypress run -r cypress-multi-reporters --reporter mochawesome",
     "report:merge": "mochawesome-merge cypress/results/json/*.json -o index.json",
     "report:generate": "marge index.json --reportDir public --assetsDir public/assets --reportPageTitle index.html"
   },
