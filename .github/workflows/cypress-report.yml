@@ -25,11 +25,14 @@ jobs:
           $(npm bin)/cypress cache list
           $(npm bin)/cypress verify
           
+      - name: install react
+        run: npm install react
+        
+      - name: run react site
+        run: npm start
+          
       - name: Run Cypress tests
-        run:
-          export DISPLAY=:99
-          chromedriver --url-base=/wd/hub &
-          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
+        run: npm run test:chrome
         continue-on-error: true
         
       - name: Copy test execution videos
