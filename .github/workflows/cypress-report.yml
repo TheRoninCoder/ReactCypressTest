@@ -18,31 +18,35 @@ jobs:
     steps:
       - uses: actions/checkout@v2
       
-      - name: Install cypress and verify
-        run:
+      - name: Install a project with a clean slate
+        run: |
           npm ci
+          $(npm bin)/cypress cache path
+          $(npm bin)/cypress cache list
           $(npm bin)/cypress verify
-      
+          
       - name: Run Cypress tests
         run: 
           export DISPLAY=:99
           chromedriver --url-base=/wd/hub &
           sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
-        continue-on-error: false
+        continue-on-error: true
         
       - name: Copy test execution videos
-        run:
+        run: |
           # mkdir public
           cp -r cypress/videos public/videos
           
-      - name: Merge test reports
-        run: npm run combine-reports
+      - name: Merge test results into one
+        run: npm run report:merge
         
       - name: Generate HTML report
-        run: npm run generate-reports
-      
-      - name: Deploy report page to Github page
+        run: npm run report:generate
+        
+      - name: Deploy report page
         uses: peaceiris/actions-gh-pages@v3
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           publish_dir: ./public
+          user_name: 'github-actions[bot]'
+          user_email: 'github-actions[bot]@users.noreply.github.com'
