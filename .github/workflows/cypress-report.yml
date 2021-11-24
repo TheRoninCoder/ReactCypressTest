@@ -38,7 +38,7 @@ jobs:
           cp -r cypress/videos public/videos
           
       - name: Merge test results into one
-        run: npm run report:merge
+        run: cypress run -r cypress-multi-reporters test_script --reporter mochawesome # npm run report:merge
         
       - name: Generate HTML report
         run: npm run report:generate
