@@ -12,9 +12,9 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   cypress-test:
-    name: Run on Chrome 81
-    runs-on: ubuntu-18.04
-    container: cypress/browsers:node12.16.2-chrome81-ff75
+    name: Runs on chrome 94
+    runs-on: ubuntu-20.04
+    container: cypress/browsers:node16.5.0-chrome94-ff93
     steps:
       - uses: actions/checkout@v2
       
@@ -26,7 +26,10 @@ jobs:
           $(npm bin)/cypress verify
           
       - name: Run Cypress tests
-        run: npm run test:chrome
+        run:
+          export DISPLAY=:99
+          chromedriver --url-base=/wd/hub &
+          sudo Xvfb -ac :99 -screen 0 1280x1024x24 > /dev/null 2>&1 &
         continue-on-error: true
         
       - name: Copy test execution videos
