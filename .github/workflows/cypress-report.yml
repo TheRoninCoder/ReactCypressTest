@@ -37,8 +37,11 @@ jobs:
           # mkdir public
           cp -r cypress/videos public/videos
           
+      - name: create json files post tests
+        run: npm run posttest
+          
       - name: Merge test results into one
-        run: cypress run -r cypress-multi-reporters test_script --reporter mochawesome # npm run report:merge
+        run: npm run report:merge
         
       - name: Generate HTML report
         run: npm run report:generate
