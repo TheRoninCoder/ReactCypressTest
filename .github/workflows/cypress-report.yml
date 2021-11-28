@@ -15,7 +15,7 @@ jobs:
     name: Run on Chrome latest
     runs-on: ubuntu-18.04
     container: cypress/browsers:latest
-    
+
     steps:
       - uses: actions/checkout@v2
 
@@ -26,23 +26,9 @@ jobs:
           wait-on: "http://localhost:3000/"
           browser: chrome
           headless: true
-      
-      - name: Install a project with a clean slate
-        run: |
-          npm ci
-          $(npm bin)/cypress cache path
-          $(npm bin)/cypress cache list
-          $(npm bin)/cypress verify       
-          
-      - name: Run Cypress tests
-        run: npm run test
-        continue-on-error: false
         
       - name: Copy test execution videos
         run: cp -r cypress/videos public/videos
-          
-      - name: create json files post tests
-        run: npm run posttest
           
       - name: Merge test results into one
         run: npm run report:merge
