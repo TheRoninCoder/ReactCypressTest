@@ -1,1 +1,7 @@
 node_modules
+*.mp4
+cypress/results/json/mochawesome_2021-11-28T184105+0000.json
+cypress/results/json/mochawesome_2021-11-28T184119+0000.json
+cypress/results/json/mochawesome_2021-11-28T184128+0000.json
+*.mp4
+cypress/videos/accomplisments.spec.js.mp4
